@@ -1,0 +1,75 @@
+<teiHeader>
+    <appInfo>
+        <application xml:id="vice-emu">
+            <label>VICE C64 Emulator</label>
+            <desc> A multi purpose emulator for various commodore computers. VICE was used to render
+                the content into the oringal layout. </desc>
+            <ref target="https://vice-emu.sourceforge.io"/>
+            <appConfig>
+                <settings>
+                    <setting xml:id="setting-videoMode">
+                        <name>videoMode</name>
+                        <values type="xsd:string"/>
+                        <desc> Controll the rendering of the output </desc>
+                    </setting>
+                    <setting xml:id="vice-setting-debugMode">
+                        <name>debugLevel</name>
+                        <values type="xsd:integer">
+                            <enumeration>
+                                <values>1</values>
+                                <values>2</values>
+                                <values>3</values>
+                            </enumeration>
+                        </values>
+                        <desc>Controll the amount and depth of the debugging messages printed to
+                            stdout.</desc>
+                    </setting>
+                </settings>
+                <configurations>
+                    <configuration xml:id="conf1-basic">
+                        <desc>
+                            <name>Basic Settings</name>
+                            <p> Basic configuration to start most the disk mags. </p>
+                        </desc>
+                        <ref target="setting1.conf"/>
+                        <settingsConfig>
+                            <settingConf xml:id="setting-videoMode">
+                                <name>videoMode</name>
+                            </settingConf>
+                            <settingConfig xml:id="setting-debugMode">
+                                <name>debugLevel</name>
+                            </settingConfig>
+                        </settingsConfig>
+                    </configuration>
+                    <configuration xml:id="conf2-compat">
+                        <desc>
+                            <name>Compatibility mode</name>
+                            <p> Configuration to start the vice emulator in Compatibility Mode. Used to play
+                                the minigames. </p>
+                        </desc>
+                        <ref target="setting2.conf"/>
+                        <settings>
+                            <setting ref="setting-videoMode">
+                                <value type="xsd:string">compat</value>
+                                <!-- Settings might have multityped values, so its better to annotate their datatype with each value-->
+                            </setting>
+                            <setting ref="setting-debugMode">
+                                <value type="xsd:int">3</value>
+                            </setting>
+                        </settings>
+                        <executionScript>
+                            <cli> vice rom.c64 --videoMode compat --debugLevel 3 </cli>
+                        </executionScript>
+                    </configuration>
+                </configurations>
+            </appConfig>
+        </application>
+        <application xml:id="hexfiend-editor">
+            <label>Hex Fiend - Editor</label>
+            <ref target="https://github.com/HexFiend/HexFiend"/>
+            <desc> A Hex-Editor, which was used to extract some metadata like manually from the
+                ROMs. </desc>
+        </application>
+    </appInfo>
+    
+</teiHeader>
